@@ -1,4 +1,5 @@
 import java.util.Scanner;
+
 public class p2 {
     public static void main(String[] args) {
 
@@ -37,15 +38,16 @@ class EnteroLargo {
 
         int v_num_a_enteroLargo, v_num_p_enteroLargo;
 
-        if (a_enteroLargo.length() > p_enteroLargo.length()) {
+        if (a_enteroLargo.length() == p_enteroLargo.length()) {
+            p_enteroLargo = "0" + p_enteroLargo;
+            a_enteroLargo = "0" + a_enteroLargo;
+        } else if (a_enteroLargo.length() > p_enteroLargo.length()) {
             int v_diferencia = a_enteroLargo.length() - p_enteroLargo.length();
             int contador;
             for (contador = 0; contador < v_diferencia; contador++) {
                 p_enteroLargo = "0" + p_enteroLargo;
             }
-        }
-
-        if (a_enteroLargo.length() < p_enteroLargo.length()) {
+        } else if (a_enteroLargo.length() < p_enteroLargo.length()) {
             int v_diferencia = p_enteroLargo.length() - a_enteroLargo.length();
             int contador;
             for (contador = 0; contador < v_diferencia; contador++) {
@@ -63,9 +65,7 @@ class EnteroLargo {
 
             if (v_suma.length() > 1) {
                 v_result = String.valueOf(v_suma.charAt(1)) + v_result;
-
                 v_numDecimal = Character.getNumericValue(v_suma.charAt(0));
-
             } else {
                 v_result = v_suma + v_result;
                 v_numDecimal = 0;
