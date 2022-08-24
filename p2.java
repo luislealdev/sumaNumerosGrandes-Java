@@ -1,5 +1,4 @@
 import java.util.Scanner;
-
 public class p2 {
     public static void main(String[] args) {
 
@@ -16,6 +15,10 @@ public class p2 {
             arr_result[contador] = el1.m_calcSuma(el2);
         }
 
+        for (contador = 0; contador < v_casosPrueba; contador++) {
+            System.out.println(arr_result[contador].a_enteroLargo);
+        }
+
     }
 }
 
@@ -26,21 +29,48 @@ class EnteroLargo {
         a_enteroLargo = p_enteroLargo;
     }
 
-    public EnteroLargo m_calcSuma(EnteroLargo p_enteroLargo) {
+    public EnteroLargo m_calcSuma(EnteroLargo par_enteroLargo) {
         String v_result = "";
+        String v_suma;
+        int v_numDecimal = 0;
+        String p_enteroLargo = par_enteroLargo.a_enteroLargo;
+
+        int v_num_a_enteroLargo, v_num_p_enteroLargo;
+
+        if (a_enteroLargo.length() > p_enteroLargo.length()) {
+            int v_diferencia = a_enteroLargo.length() - p_enteroLargo.length();
+            int contador;
+            for (contador = 0; contador < v_diferencia; contador++) {
+                p_enteroLargo = "0" + p_enteroLargo;
+            }
+        }
+
+        if (a_enteroLargo.length() < p_enteroLargo.length()) {
+            int v_diferencia = p_enteroLargo.length() - a_enteroLargo.length();
+            int contador;
+            for (contador = 0; contador < v_diferencia; contador++) {
+                a_enteroLargo = "0" + a_enteroLargo;
+            }
+        }
+
         int contador;
+        for (contador = a_enteroLargo.length() - 1; contador >= 0; contador -= 1) {
 
-        if (a_enteroLargo.length() >= p_enteroLargo.a_enteroLargo.length()) {
-            for (contador = 0; contador < p_enteroLargo.a_enteroLargo.length(); contador++) {
-                char v_num_a_enteroLargo =a_enteroLargo.charAt(contador);
-                System.out.println(Character.getNumericValue(v_num_a_enteroLargo));
-                // int v_num_p_enteroLargo = p_enteroLargo.a_enteroLargo.charAt(contador);
+            v_num_a_enteroLargo = Character.getNumericValue(a_enteroLargo.charAt(contador));
+            v_num_p_enteroLargo = Character.getNumericValue(p_enteroLargo.charAt(contador));
 
+            v_suma = Integer.toString(v_numDecimal + v_num_a_enteroLargo + v_num_p_enteroLargo);
+
+            if (v_suma.length() > 1) {
+                v_result = String.valueOf(v_suma.charAt(1)) + v_result;
+
+                v_numDecimal = Character.getNumericValue(v_suma.charAt(0));
+
+            } else {
+                v_result = v_suma + v_result;
+                v_numDecimal = 0;
             }
-        } else {
-            for (contador = 0; contador < a_enteroLargo.length(); contador++) {
 
-            }
         }
 
         EnteroLargo el_result = new EnteroLargo(v_result);
